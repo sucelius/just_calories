@@ -3,16 +3,16 @@ const Layout = require("./Layout");
 
 function Personal({ username , userProducts ,user }) {
   //JS Code
-  console.log('data =>>>>>' , user )
-    let currentDate = new Date().toJSON().slice(0, 10);
-    let currentUserProduct = []
-    if(userProducts.length !== 0){
-         currentUserProduct = userProducts.map((element) => {
-            if(element.createdAt.toJSON().slice(0, 10) === currentDate) {
-                return element
+  let currentDate = new Date().toJSON().slice(0, 10);
+  let currentUserProduct = []
+  if(userProducts.length !== 0){
+      currentUserProduct = userProducts.filter((element) => {
+          if(element.createdAt.toJSON().slice(0, 10) === currentDate) {
+              return element
             }
         })
     }
+    console.log('data =>>>>>' , currentUserProduct )
   
     const protein = currentUserProduct.map(element => element.protein).reduce((acc, el) => acc + el, 0)
     const fat = currentUserProduct.map(element => element.fat).reduce((acc, el) => acc + el, 0)
