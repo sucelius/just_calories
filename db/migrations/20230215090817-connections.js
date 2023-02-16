@@ -11,7 +11,7 @@ module.exports = {
      */
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.addColumn('Meals', 'user_id', {
+        queryInterface.addColumn('Products', 'user_id', {
           type:Sequelize.DataTypes.INTEGER,
           references: {
             model:'Users',
@@ -19,14 +19,6 @@ module.exports = {
             allowNull: false
           }
         }, {transaction:t}),
-        queryInterface.addColumn('Products', 'meal_id', {
-          type:Sequelize.DataTypes.INTEGER,
-          references:{
-            model:'Meals',
-            key: 'id',
-            allowNull:false
-          }
-        }, {transaction:t})
       ])
     })
   },
@@ -40,8 +32,7 @@ module.exports = {
      */
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.removeColumn('Meal', 'user_id', {transaction:t}),
-        queryInterface.removeColumn('Product', 'meal_id', {transaction:t})
+        queryInterface.removeColumn('Products', 'user_id', {transaction:t})
       ])
     })
   }

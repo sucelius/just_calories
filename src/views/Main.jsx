@@ -1,9 +1,9 @@
 const React = require("react");
 const Layout = require("./Layout");
 
-const Main = () => {
+const Main = ({username}) => {
   return (
-    <Layout>
+    <Layout username={username}>
       <h1>Main page</h1>
       <form action='/data' method='POST' id='form' style={{width: '18rem'}}>
         <div className='mb-3'>
@@ -20,19 +20,13 @@ const Main = () => {
         <button type='submit' id='submit' className='btn btn-primary'>
           Submit
         </button>
+        {username? (<button type="button" class="btn btn-primary" id ="send_btn">Send to db</button>): (<span></span>)}
       </form>
       <br />
-      <div id="container" style={{width: '18rem'}}>
-
+      <div className="container text-center" id="container"  >
+      {/* className="container mt-5"
+      style={{width: '18rem'}} */}
       </div>
-      {/* <div class='card' style={{width: '18rem'}}>
-        <div class='card-header'>Featured</div>
-        <ul class='list-group list-group-flush'>
-          <li class='list-group-item'>calories:</li>
-          <li class='list-group-item'>serving_size_g:</li>
-          <li class='list-group-item'>A third item</li>
-        </ul>
-      </div> */}
     </Layout>
   );
 };

@@ -3,11 +3,13 @@ require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const cors = require('cors')
+// const cors = require('cors')
+const session = require('express-session'); // библиотека для работы с сессиями// cookie-parser уже включен в express-session
+const FileStore = require('session-file-store')(session);
 
 
-const renderTemplate = require('./src/lib/renderTemplate')
-const Main = require('./src/views/Main')
+
+const indexRouter = require('./src/routes/index')
 
 const app = express()
 const PORT = process.env.PORT ?? 3000; 
@@ -35,18 +37,34 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'src/public/')));
 
+const sessionConfig = {
+  name: 'sid', // название куки
+  store: new FileStore({}), // подключаем БД для храненя куков
+  secret: process.env.COOKIE_SECRET, // ключ для шифрования cookies // require('crypto').randomBytes(10).toString('hex')
+  resave: false,                     // Если true,  пересохраняет сессию, даже если она не поменялась
+  saveUninitialized: false, // Если false, куки появляются только при установке req.session
+  httpOnly: true,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production', // В продакшне нужно "secure: true" для работы через протокол HTTPS
+    maxAge: 1000 * 60 * 60 * 24 * 10, // время жизни cookies, ms (10 дней)
+  },
+}
 
-app.get('/',  (req,res) => {
-    console.log(res.body)
-    renderTemplate(Main,{}, res)
-    // res.send('Hello!')
-})
+app.use(session(sessionConfig));
+
+app.use((req, res, next) => {
+  console.log("\n\x1b[33m", 'req.session.user :', req.session?.user);
+  res.locals.username = req.session?.user?.name;
+  next();
+});
+
+app.use('/', indexRouter)
 
 
-app.get('/data', (req,res) => {
+// app.get('/data', (req,res) => {
     
-    // console.log(res)
-})
+//     // console.log(res)
+// })
 
 
 
