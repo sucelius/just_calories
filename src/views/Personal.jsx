@@ -38,8 +38,8 @@ function Personal({ username , userProducts ,user }) {
       <div class="card-body">
       <ul class="list-group list-group-flush">
     <li class="list-group-item">Age: {user.age}</li>
-    <li class="list-group-item">Height: {user.height}</li>
-    <li class="list-group-item">Weight: {user.weight}</li>
+    <li class="list-group-item">Height: {user.height} cm</li>
+    <li class="list-group-item">Weight: {user.weight} kg</li>
     <li class="list-group-item">Gender: {user.gender}</li>
   </ul>
       </div>
@@ -50,9 +50,9 @@ function Personal({ username , userProducts ,user }) {
       <div class="card-body">
       <ul class="list-group list-group-flush">
     <li class="list-group-item">Required calories per day: {user.gender === 'male' ? caloriesForMan :caloriesForWoman }</li>
-    <li class="list-group-item">Required protein per day: {proteinPerDay}</li>
-    <li class="list-group-item">Required fat per day: {fatPerDay}</li>
-    <li class="list-group-item">Required carbohydrates per day: {carbPerDay}</li>
+    <li class="list-group-item">Required protein per day: {proteinPerDay}g</li>
+    <li class="list-group-item">Required fat per day: {fatPerDay}g</li>
+    <li class="list-group-item">Required carbohydrates per day: {carbPerDay}g</li>
   </ul>
       </div>
     </div>

@@ -20,17 +20,21 @@ router.get("/signin", (req, res) => {
 });
 
 router.post("/signin", async (req, res) => {
-    const { name, password } = req.body;
-    console.log( name, password )
-    const user = await User.findOne({ where: { name: name } });
+    const { username, password } = req.body;
+
+    if(username === undefined || password === undefined) {
+        res.redirect('/')
+    } else {
+      const user = await User.findOne({ where: { name: username } });
   
-    const validation = await bcrypt.compare(password, user.password);
-    if(validation){
-        req.session.user = { id: user.id, name: user.name };
-        console.log(user.id,user.name)
-        res.redirect("/");
-    }else {
-        res.redirect("/signin")
+      const validation = await bcrypt.compare(password, user.password);
+      if(validation){
+          req.session.user = { id: user.id, name: user.name };
+          console.log(user.id,user.name)
+          res.redirect("/");
+      }else {
+          res.redirect("/signin")
+      }
     }
     
   });
