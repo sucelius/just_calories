@@ -5,7 +5,7 @@ function Registraton({ username }) {
   return (
     <Layout username={username}>
       <div className="container mt-5" style={{width: '18rem'}}>
-        <h2>Registration</h2>
+        <h2> Create account</h2>
         <form id="signupForm" method="POST" action="/signup">
           <div className="form-group">
             <label htmlFor="username">Login:</label>

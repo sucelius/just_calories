@@ -17,7 +17,7 @@ const Layout = ({ children, username }) => {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <a className="nav-link" href="/">
-                  Main Page
+                  Home Page
                 </a>
               </li>
               {username ? (
