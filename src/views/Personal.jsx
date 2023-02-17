@@ -66,7 +66,22 @@ function Personal({ username , userProducts ,user }) {
           <div class='col-6'>
           <div class='p-3'>
               <div class='p-3'>
-              <div
+
+              <div class="progress-group">
+  <div class="progress-group-header align-items-end">
+    <i class="cil-globe progress-group-icon"></i>
+    <div>Protein today</div>
+    <div class="ml-auto font-weight-bold mr-2">{protein}g</div>
+    <div class="text-muted small">({percentOfDayProtein +"%" })</div>
+  </div>
+  <div class="progress-group-bars">
+    <div class="progress progress-xs">
+      <div class="progress-bar bg-success" role="progressbar" style={{ width: percentOfDayProtein +"%" }} aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+              
+              {/* <div
                 class='progress'
                 role='progressbar'
                 ria-label="Success example"
@@ -76,17 +91,34 @@ function Personal({ username , userProducts ,user }) {
                 style={{height: '30px'}}
               >
                 <div class="progress-bar bg-success" style={{ width: percentOfDayProtein +"%" }}>
-                <span style={{ "font-size": "1.2em" ,color:"white" , "font-weight": "bold"}}> Proteins : {userProducts.length === 0 ? 0 : protein}</span>
+                <span style={{ "font-size": "1.2em" ,color:"black" , "font-weight": "bold"}}> Proteins : {userProducts.length === 0 ? 0 : protein}</span>
                 </div>
                 
-              </div>
+              </div> */}
               </div>
             </div>
           </div>
           <div class='col-6'>
             <div class='p-3'>
               <div class='p-3'>
-              <div
+
+              <div class="progress-group">
+  <div class="progress-group-header align-items-end">
+    <i class="cil-globe progress-group-icon"></i>
+    <div>Fat today</div>
+    <div class="ml-auto font-weight-bold mr-2">{fat}g</div>
+    <div class="text-muted small">({percentOfDayFat +"%" })</div>
+  </div>
+  <div class="progress-group-bars">
+    <div class="progress progress-xs">
+      <div class="progress-bar bg-info" role="progressbar" style={{ width: percentOfDayFat +"%" }} aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+
+
+
+              {/* <div
                 class='progress'
                 role='progressbar'
                 aria-label="Info example"
@@ -99,13 +131,31 @@ function Personal({ username , userProducts ,user }) {
                 <span style={{ "font-size": "1.2em" ,color:"white" , "font-weight": "bold"}}>Fat:{  userProducts.length === 0 ? 0 : fat}</span>
                  
                 </div>
-              </div>
+              </div> */}
               </div>
             </div>
           </div>
           <div class='col-6'>
             <div class='p-3'>
               <div class='p-3'>
+
+
+              <div class="progress-group">
+  <div class="progress-group-header align-items-end">
+    <i class="cil-globe progress-group-icon"></i>
+    <div>Carbohydrates today</div>
+    <div class="ml-auto font-weight-bold mr-2">{carbo}g</div>
+    <div class="text-muted small">({percentOfDayCarb +"%" })</div>
+  </div>
+  <div class="progress-group-bars">
+    <div class="progress progress-xs">
+      <div class="progress-bar bg-warning" role="progressbar" style={{ width: percentOfDayCarb +"%" }} aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+
+
+{/*               
               <div
                 class='progress'
                 role='progressbar'
@@ -119,13 +169,29 @@ function Personal({ username , userProducts ,user }) {
                 <span style={{ "font-size": "1.2em" ,color:"white" , "font-weight": "bold"}}> Carbohydrates: {userProducts.length === 0 ? 0 : carbo  }</span>
                   
                 </div>
-              </div>
+              </div> */}
               </div>
             </div>
           </div>
           <div class='col-6'>
             <div class='p-3'>
-            <div
+
+            <div class="progress-group">
+  <div class="progress-group-header align-items-end">
+    <i class="cil-globe progress-group-icon"></i>
+    <div>Calories today</div>
+    <div class="ml-auto font-weight-bold mr-2">{calories}</div>
+    <div class="text-muted small">({percentOfDayCalories +"%" })</div>
+  </div>
+  <div class="progress-group-bars">
+    <div class="progress progress-xs">
+      <div class="progress-bar bg-danger" role="progressbar" style={{ width: percentOfDayCalories +"%" }} aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+
+
+            {/* <div
                 class='progress'
                 role='progressbar'
                 aria-label='Danger example'
@@ -138,7 +204,7 @@ function Personal({ username , userProducts ,user }) {
                 <span style={{ "font-size": "1.2em" ,color:"white" , "font-weight": "bold"}}> Calories: {userProducts.length === 0 ? 0 :  calories}</span>
                  
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

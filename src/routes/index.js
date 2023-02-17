@@ -109,6 +109,7 @@ router.get("/personal",  async (req, res) => {
   })
 
   //2445 
+  // console.log(userProducts)
 
   renderTemplate(Personal, {username , userProducts, user}, res)
 
