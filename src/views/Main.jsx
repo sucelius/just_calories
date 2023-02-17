@@ -17,6 +17,7 @@ const Main = ({username}) => {
             type='text'
             className='form-control'
             id='mealInput'
+            required
           />
         </div>
         <div ></div>

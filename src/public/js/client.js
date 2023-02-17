@@ -4,81 +4,36 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const button = document.querySelector("#submit");
   const form = document.querySelector("#form");
   // const sendButton = document.querySelector
+  const container = document.querySelector("#container");
 
-  data = {
-    items: [
-      {
-        sugar_g: 13.3,
-        fiber_g: 4,
-        serving_size_g: 283.495,
-        sodium_mg: 8,
-        name: "onion",
-        potassium_mg: 99,
-        fat_saturated_g: 0.1,
-        fat_total_g: 0.5,
-        calories: 126.7,
-        cholesterol_mg: 0,
-        protein_g: 3.9,
-        carbohydrates_total_g: 28.6,
-      },
-      {
-        sugar_g: 2.6,
-        fiber_g: 1.2,
-        serving_size_g: 100,
-        sodium_mg: 4,
-        name: "tomato",
-        potassium_mg: 23,
-        fat_saturated_g: 0,
-        fat_total_g: 0.2,
-        calories: 18.2,
-        cholesterol_mg: 0,
-        protein_g: 0.9,
-        carbohydrates_total_g: 3.9,
-      },
-      {
-        sugar_g: 2.6,
-        fiber_g: 1.2,
-        serving_size_g: 100,
-        sodium_mg: 4,
-        name: "tomato",
-        potassium_mg: 23,
-        fat_saturated_g: 0,
-        fat_total_g: 0.2,
-        calories: 18.2,
-        cholesterol_mg: 0,
-        protein_g: 0.9,
-        carbohydrates_total_g: 3.9,
-      },
-      
-    ],
-  };
+ let data = []
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const container = document.querySelector("#container");
-    const query = document.querySelector('#mealInput').value
-    console.log(query)
-    
+    const query = document.querySelector("#mealInput").value;
+    console.log(query);
+
     try {
+      const response = await fetch(
+        "https://api.calorieninjas.com/v1/nutrition?query=" + query,
+        {
+          // credentials: 'include',
+          // mode: 'no-cors',
+          method: "GET",
+          headers: {
+            "X-Api-Key": "NlZvGvEqHd0KuM/4LLszow==59f1osjRjPQo7wmd",
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-        const response = await fetch('https://api.calorieninjas.com/v1/nutrition?query='+query , {
-            // credentials: 'include',
-            // mode: 'no-cors',
-            method: 'GET',
-            headers: {
-                'X-Api-Key': 'NlZvGvEqHd0KuM/4LLszow==59f1osjRjPQo7wmd',
-                'Content-Type': 'application/json'
+      const result = await response.json();
+      console.log(result.items.length)
+      
 
-            },
-
-        }) ;
-
-        const result = await response.json()
-        console.log(result.items[0])
-        // const datForContainer = result.items.map((element) => {
-        //     `<li class='list-group-item'>${element}</li>`
-        // })
-        console.log(result)
-
+      if (result.items.length === 0 ) {
+        container.innerHTML = ` <h3>Try to enter the correct name of the dish or product</h3>`
+      } else {
+        
         container.innerHTML = `
          
         <div class="row">
@@ -91,13 +46,13 @@ document.addEventListener("DOMContentLoaded", (e) => {
                        <div class="col">
                         <div class='card' style={{width: '18rem'}}>
                                            <div class='card-header'>${element.name}</div>
-                       <ul class='list-group list-group-flush'>
-                                   <ul class='list-group list-group-flush'>
-                                   <li class='list-group-item'>calories:${element.calories}</li>
-                       <li class='list-group-item'>fat_total_g:${element.fat_total_g}</li>
-                       <li class='list-group-item'>protein_g:${element.protein_g}</li>
-                       <li class='list-group-item'>carbohydrates_total_g:${element.carbohydrates_total_g}</li>
-                       <li class='list-group-item'>serving_size_g:${element.serving_size_g}</li>
+                    <ul class='list-group list-group-flush'>
+                      <ul class='list-group list-group-flush'>
+                        <li class='list-group-item'>Calories:${element.calories}</li>
+                       <li class='list-group-item'>Fat:${element.fat_total_g} g</li>
+                       <li class='list-group-item'>Protein:${element.protein_g} g</li>
+                       <li class='list-group-item'>Carbohydrates:${element.carbohydrates_total_g} g</li>
+                       <li class='list-group-item'>Size:${element.serving_size_g} g</li>
                        </ul>
                        </div> 
                        </div>
@@ -110,28 +65,34 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 </div>
               
                 `;
+        
+      }
 
+      const send_btn = document.querySelector("#send_btn");
+    
+      send_btn?.addEventListener("click", async (event) => {
+        console.log(result.items);
+        try {
+          const send = await fetch("data", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(result.items),
+          });
+          
+
+          console.log( 'data' , send)
+          container.innerHTML = `<h3>Saved, check your personal page<h/3>`
+    
+        } catch (error) {
+          console.log('Save meal error =>> ' , error)
+        }
+      });
+      
     } catch (error) {
-        console.log('error from event listner  =>>>' , error)
+      console.log("error from event listner  =>>>", error);
     }
   });
 
-  
-  
-  
-  
-  const send_btn = document.querySelector("#send_btn")
-  
-  send_btn?.addEventListener('click',async (event) => {
-  console.log(data)
-  const send = await fetch('\data' , {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-
-  })
-  })
-  
 });

@@ -37,10 +37,10 @@ function Personal({ username , userProducts ,user }) {
     <div class="card">
       <div class="card-body">
       <ul class="list-group list-group-flush">
-    <li class="list-group-item">Age:{user.age}</li>
-    <li class="list-group-item">Height:{user.height}</li>
-    <li class="list-group-item">Weight:{user.weight}</li>
-    <li class="list-group-item">Gender:{user.gender}</li>
+    <li class="list-group-item">Age: {user.age}</li>
+    <li class="list-group-item">Height: {user.height}</li>
+    <li class="list-group-item">Weight: {user.weight}</li>
+    <li class="list-group-item">Gender: {user.gender}</li>
   </ul>
       </div>
     </div>

@@ -14,10 +14,13 @@ function Login({ username, name }) {
             <input
               id="username"
               className="form-control"
-              name="name"
+              name="username"
               type="text"
               required
             />
+                <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>

@@ -72,7 +72,13 @@ function Registraton({ username }) {
           </div>
           <div className="form-group">
             <label htmlFor="gender">Gender:</label>
-            <input
+            
+            <select name='gender' class="form-select" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                              </select>
+                      
+            {/* <input
               id="gender"
               className="form-control"
               name="gender"
@@ -81,7 +87,7 @@ function Registraton({ username }) {
               pattern="[A-Za-z]\w+"
               minLength={4}
               title="Латинские буквы, цифры. Имя должно начинаться с буквы"
-            />
+            /> */}
           </div>
           <button type="submit" className="btn btn-primary btn-lg">
           Signup

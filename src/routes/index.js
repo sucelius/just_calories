@@ -42,7 +42,8 @@ router.get("/signup", (req, res) => {
 
 router.post("/signup", async (req, res) => {
   const { name, password, height, weight, age, gender } = req.body;
-  console.log(name, password, height, weight, age, gender);
+  // console.log(name, password, height, weight, age, gender);
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
@@ -76,8 +77,8 @@ router.get("/signout", async (req, res, next) => {
 
 router.post("/data", async (req, res) => {
   const data = req.body
-
-    data.items.map(async (element) => {
+  // data.map((el) => console.log(el))
+    data.map(async (element) => {
     await Product.create({
       name: element.name,
       calories: Math.round(element.calories),
@@ -88,6 +89,8 @@ router.post("/data", async (req, res) => {
       user_id:req.session.user.id
     })
   })
+
+  res.sendStatus(200)
 
 });  
 
