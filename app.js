@@ -41,7 +41,7 @@ const sessionConfig = {
   name: 'sid', // название куки
   store: new FileStore({}), // подключаем БД для храненя куков
   secret: process.env.COOKIE_SECRET, // ключ для шифрования cookies // require('crypto').randomBytes(10).toString('hex')
-  resave: false,                     // Если true,  пересохраняет сессию, даже если она не поменялась
+  resave: 	,                     // Если true,  пересохраняет сессию, даже если она не поменялась
   saveUninitialized: false, // Если false, куки появляются только при установке req.session
   httpOnly: true,
   cookie: {
